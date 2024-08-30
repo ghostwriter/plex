@@ -81,7 +81,7 @@ $grammar = Grammar::new([
 $lexer = \Ghostwriter\Plex\Lexer::new($grammar);
 
 $expected = [
-    Token::new('T_ALL', '456def', 1, 6, [])
+    Token::new('T_ID', '456def', 1, 6, [])
 ];
 
 $content = '456def';
