@@ -1,0 +1,127 @@
+{
+    "name": "ghostwriter/wip",
+    "description": "Here be dragons",
+    "license": "BSD-3-Clause",
+    "type": "library",
+    "keywords": [
+        "ghostwriter",
+        "wip"
+    ],
+    "authors": [
+        {
+            "name": "Nathanael Esayeas",
+            "email": "nathanael.esayeas@protonmail.com",
+            "homepage": "https://github.com/ghostwriter",
+            "role": "Developer"
+        }
+    ],
+    "homepage": "https://github.com/ghostwriter/wip",
+    "support": {
+        "issues": "https://github.com/ghostwriter/wip/issues",
+        "forum": "https://github.com/ghostwriter/wip/discussions",
+        "source": "https://github.com/ghostwriter/wip",
+        "docs": "https://github.com/ghostwriter/wip",
+        "rss": "https://github.com/ghostwriter/wip/releases.atom",
+        "security": "https://github.com/ghostwriter/wip/security/advisories/new"
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/ghostwriter"
+        }
+    ],
+    "_comment": "#BlackLivesMatter",
+    "require": {
+        "php": ">=8.3",
+        "ghostwriter/case-converter": "^1.0.0",
+        "ghostwriter/clock": "^3.0.0",
+        "ghostwriter/collection": "^2.0.0",
+        "ghostwriter/config": "^0.4.1",
+        "ghostwriter/container": "^4.0.2",
+        "ghostwriter/event-dispatcher": "^5.0.2",
+        "ghostwriter/json": "^3.0.0",
+        "ghostwriter/option": "^1.5.1",
+        "ghostwriter/result": "^1.3.0",
+        "ghostwriter/shell": "^0.1.0",
+        "ghostwriter/uuid": "^1.0.1"
+    },
+    "require-dev": {
+        "ghostwriter/coding-standard": "dev-main"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Ghostwriter\\Wip\\": "src"
+        },
+        "files": [
+            "src/constants.php",
+            "src/functions.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "bin": [
+        "bin/console",
+        "bin/console.php"
+    ],
+    "config": {
+        "allow-plugins": {
+            "ghostwriter/coding-standard": true
+        },
+        "classmap-authoritative": false,
+        "discard-changes": true,
+        "optimize-autoloader": true,
+        "platform": {
+            "php": "8.3.999"
+        },
+        "preferred-install": "dist",
+        "prepend-autoloader": true,
+        "process-timeout": 5000,
+        "sort-packages": true,
+        "use-parent-dir": false
+    },
+    "scripts": {
+        "bin_ecs": "ecs check --clear-cache --no-interaction",
+        "bin_infection": "infection --ansi --show-mutations --threads=max --min-msi=0 --min-covered-msi=0",
+        "bin_phive": "phive",
+        "bin_phpunit": "phpunit --do-not-cache-result --colors=always",
+        "bin_psalm": "psalm --no-cache",
+        "bin_rector": "rector process --no-ansi --clear-cache",
+        "cache:clear": "rm -rf ./.cache/*",
+        "check": [
+            "@composer validate",
+            "@ecs",
+            "@test"
+        ],
+        "dev": [
+            "@cache:clear",
+            "@check",
+            "@psalm:update",
+            "@psalm:security",
+            "@psalm:dry-run"
+        ],
+        "ecs": "@bin_ecs --fix",
+        "git:submodule:update": "git submodule update --depth=1 --init --recursive --recommend-shallow --remote",
+        "infection": "@bin_infection",
+        "phpunit": "@bin_phpunit",
+        "phpunit:migrate": "@bin_phpunit --migrate-configuration",
+        "psalm": "@bin_psalm --show-info=true",
+        "psalm:alter": "@bin_psalm --alter --allow-backwards-incompatible-changes=false --safe-types",
+        "psalm:baseline": "@psalm --no-diff --set-baseline=psalm-baseline.xml",
+        "psalm:dry-run": "@psalm:alter --issues=all --dry-run",
+        "psalm:fix": "@psalm:alter --issues=UnnecessaryVarAnnotation,MissingPureAnnotation,MissingImmutableAnnotation",
+        "psalm:security": "@psalm --no-diff --taint-analysis",
+        "psalm:shepherd": "@psalm --no-diff --shepherd --stats",
+        "psalm:update": "@psalm --no-diff --update-baseline=psalm-baseline.xml",
+        "rector": "@bin_rector",
+        "test": [
+            "@phpunit",
+            "@psalm:shepherd",
+            "@infection"
+        ]
+    }
+}
