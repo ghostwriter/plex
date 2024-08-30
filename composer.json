@@ -1,11 +1,11 @@
 {
-    "name": "ghostwriter/wip",
-    "description": "Here be dragons",
+    "name": "ghostwriter/plex",
+    "description": "Provides the fastest lexer for PHP, tokenizing text with named regex patterns for efficient processing",
     "license": "BSD-3-Clause",
     "type": "library",
     "keywords": [
         "ghostwriter",
-        "wip"
+        "plex"
     ],
     "authors": [
         {
@@ -15,14 +15,14 @@
             "role": "Developer"
         }
     ],
-    "homepage": "https://github.com/ghostwriter/wip",
+    "homepage": "https://github.com/ghostwriter/plex",
     "support": {
-        "issues": "https://github.com/ghostwriter/wip/issues",
-        "forum": "https://github.com/ghostwriter/wip/discussions",
-        "source": "https://github.com/ghostwriter/wip",
-        "docs": "https://github.com/ghostwriter/wip",
-        "rss": "https://github.com/ghostwriter/wip/releases.atom",
-        "security": "https://github.com/ghostwriter/wip/security/advisories/new"
+        "issues": "https://github.com/ghostwriter/plex/issues",
+        "forum": "https://github.com/ghostwriter/plex/discussions",
+        "source": "https://github.com/ghostwriter/plex",
+        "docs": "https://github.com/ghostwriter/plex",
+        "rss": "https://github.com/ghostwriter/plex/releases.atom",
+        "security": "https://github.com/ghostwriter/plex/security/advisories/new"
     },
     "funding": [
         {
@@ -32,18 +32,7 @@
     ],
     "_comment": "#BlackLivesMatter",
     "require": {
-        "php": ">=8.3",
-        "ghostwriter/case-converter": "^1.0.0",
-        "ghostwriter/clock": "^3.0.0",
-        "ghostwriter/collection": "^2.0.0",
-        "ghostwriter/config": "^0.4.1",
-        "ghostwriter/container": "^4.0.2",
-        "ghostwriter/event-dispatcher": "^5.0.2",
-        "ghostwriter/json": "^3.0.0",
-        "ghostwriter/option": "^1.5.1",
-        "ghostwriter/result": "^1.3.0",
-        "ghostwriter/shell": "^0.1.0",
-        "ghostwriter/uuid": "^1.0.1"
+        "php": ">=8.3"
     },
     "require-dev": {
         "ghostwriter/coding-standard": "dev-main"
@@ -52,22 +41,14 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Ghostwriter\\Wip\\": "src"
-        },
-        "files": [
-            "src/constants.php",
-            "src/functions.php"
-        ]
+            "Ghostwriter\\Plex\\": "src"
+        }
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests"
         }
     },
-    "bin": [
-        "bin/console",
-        "bin/console.php"
-    ],
     "config": {
         "allow-plugins": {
             "ghostwriter/coding-standard": true
