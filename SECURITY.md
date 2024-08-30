@@ -6,7 +6,7 @@ If you believe you have found a security vulnerability in the library that is de
 
 **Please do not report security vulnerabilities through public GitHub issues, discussions, or pull requests.**
 
-Instead, please use [`Security Advisories`](https://github.com/ghostwriter/wip/security/advisories/new).
+Instead, please use [`Security Advisories`](https://github.com/ghostwriter/plex/security/advisories/new).
 
 ## Supported Versions
 
