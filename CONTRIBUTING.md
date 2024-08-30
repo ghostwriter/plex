@@ -1,4 +1,4 @@
-# Contributing to Wip
+# Contributing to Plex
 
 First of all thank you for considering to contribute.
 
@@ -19,9 +19,9 @@ Fork the project on GitHub and check out your copy locally.
 ## Step 2: Clone the repository
 
 ```bash
-git clone git@github.com:ghostwriter/wip.git
-cd wip
-git remote add upstream git://github.com/ghostwriter/wip.git
+git clone git@github.com:ghostwriter/plex.git
+cd plex
+git remote add upstream git://github.com/ghostwriter/plex.git
 ```
 
 ## Step 3: Branch
