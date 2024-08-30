@@ -1,2 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.25.0@01a8eb06b9e9cc6cfb6a320bf9fb14331919d505"/>
+<files psalm-version="5.25.0@01a8eb06b9e9cc6cfb6a320bf9fb14331919d505">
+  <file src="src/Grammar.php">
+    <LessSpecificReturnStatement>
+      <code><![CDATA[preg_replace_callback(self::REFERENCE_REGULAR_EXPRESSION, static function (array $matches) use (
+            &$regularExpressions
+        ): string {
+            $token = $matches[1] ?? throw new ShouldNotHappenException(
+                'The reference token should always be present'
+            );
+
+            if (array_key_exists($token, $regularExpressions)) {
+                // Recursively resolve the pattern for the referenced token
+                return '(?:' . self::resolveReference($regularExpressions[$token], $regularExpressions) . ')';
+            }
+
+            throw new UndefinedReferenceException(sprintf(
+                'Undefined reference "%s" in regular expression "%s"',
+                $token,
+                $matches[0]
+            ));
+        }, $regularExpression)]]></code>
+    </LessSpecificReturnStatement>
+    <LessSpecificReturnType>
+      <code><![CDATA[string]]></code>
+    </LessSpecificReturnType>
+    <MixedArgument>
+      <code><![CDATA[$regularExpressions[$token]]]></code>
+    </MixedArgument>
+    <MixedArgumentTypeCoercion>
+      <code><![CDATA[$regularExpressions]]></code>
+    </MixedArgumentTypeCoercion>
+    <MoreSpecificReturnType>
+      <code><![CDATA[non-empty-string]]></code>
+    </MoreSpecificReturnType>
+    <PossiblyUndefinedIntArrayOffset>
+      <code><![CDATA[$matches[0]]]></code>
+    </PossiblyUndefinedIntArrayOffset>
+  </file>
+  <file src="tests/Unit/AbstractTestCase.php">
+    <InvalidReturnType>
+      <code><![CDATA[Generator<array{0:GrammarInterface,1:array<TokenInterface>,2:string}>]]></code>
+      <code><![CDATA[Generator<array{0:array<string,string>,1:string,2:array<TokenInterface>,3:string}>]]></code>
+    </InvalidReturnType>
+    <MixedAssignment>
+      <code><![CDATA[$name]]></code>
+    </MixedAssignment>
+    <UnusedVariable>
+      <code><![CDATA[$expected]]></code>
+    </UnusedVariable>
+  </file>
+</files>
