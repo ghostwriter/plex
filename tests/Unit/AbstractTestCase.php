@@ -65,12 +65,12 @@ abstract class AbstractTestCase extends \PHPUnit\Framework\TestCase
     {
         // regexps, compiled, content, tokens
         yield from [
-            'empty' => [[], '#(?|)#A', '', []],
+            'empty' => [[], '#(?|)#Au', '', []],
             'single' => [
                 [
                     'T_NUM' => '\d+',
                 ],
-                '#(?|(?:\d+)(*MARK:T_NUM))#A',
+                '#(?|(?:\d+)(*MARK:T_NUM))#Au',
                 '123',
                 [Token::new('T_NUM', '123', 1, 3, [])],
             ],
@@ -80,7 +80,7 @@ abstract class AbstractTestCase extends \PHPUnit\Framework\TestCase
                     'T_SPACE' => '\s+',
                     'T_STR' => '\w+',
                 ],
-                '#(?|(?:\d+)(*MARK:T_NUM)|(?:\s+)(*MARK:T_SPACE)|(?:\w+)(*MARK:T_STR))#A',
+                '#(?|(?:\d+)(*MARK:T_NUM)|(?:\s+)(*MARK:T_SPACE)|(?:\w+)(*MARK:T_STR))#Au',
                 '123 abc',
                 [
                     Token::new('T_NUM', '123', 1, 3, []),
@@ -93,7 +93,7 @@ abstract class AbstractTestCase extends \PHPUnit\Framework\TestCase
                     'T_REF_NUM' => '(?&T_NUM)',      // Direct reference to T_NUM
                     'T_NUM' => '\d+',                // Matches numbers
                 ],
-                '#(?|(?:(?:\d+))(*MARK:T_REF_NUM)|(?:\d+)(*MARK:T_NUM))#A',
+                '#(?|(?:(?:\d+))(*MARK:T_REF_NUM)|(?:\d+)(*MARK:T_NUM))#Au',
                 '123',
                 [Token::new('T_REF_NUM', '123', 1, 3, [])],
             ],
@@ -104,7 +104,7 @@ abstract class AbstractTestCase extends \PHPUnit\Framework\TestCase
                     'T_STR' => '\w+',                // Matches word characters
                     'T_SPACE' => '\s+',              // Matches spaces
                 ],
-                '#(?|(?:(?:\d+)|(?:\w+))(*MARK:T_ALL)|(?:\d+)(*MARK:T_NUM)|(?:\w+)(*MARK:T_STR)|(?:\s+)(*MARK:T_SPACE))#A',
+                '#(?|(?:(?:\d+)|(?:\w+))(*MARK:T_ALL)|(?:\d+)(*MARK:T_NUM)|(?:\w+)(*MARK:T_STR)|(?:\s+)(*MARK:T_SPACE))#Au',
                 '123 abc',
                 [
                     Token::new('T_ALL', '123', 1, 3, []),
@@ -120,7 +120,7 @@ abstract class AbstractTestCase extends \PHPUnit\Framework\TestCase
                     'T_REF_STR' => '(?&T_STR)',             // References T_STR
 
                 ],
-                '#(?|(?:(?:(?:\d+)|(?:(?:\w+)))*)(*MARK:T_ALL)|(?:\d+)(*MARK:T_NUM)|(?:\w+)(*MARK:T_STR)|(?:(?:\w+))(*MARK:T_REF_STR))#A',
+                '#(?|(?:(?:(?:\d+)|(?:(?:\w+)))*)(*MARK:T_ALL)|(?:\d+)(*MARK:T_NUM)|(?:\w+)(*MARK:T_STR)|(?:(?:\w+))(*MARK:T_REF_STR))#Au',
                 '456def',
                 [Token::new('T_ALL', '456def', 1, 6, [])],
             ],
@@ -134,7 +134,7 @@ abstract class AbstractTestCase extends \PHPUnit\Framework\TestCase
                     'T_OPERATOR' => '[\+\-\*\/]',
                     'T_PUNCTUATION' => '[\(\)\{\}\[\]\,]',
                 ],
-                '#(?|(?:\s+)(*MARK:T_SPACE)|(?:\d+)(*MARK:T_NUMBER)|(?:"[^"]*")(*MARK:T_STRING)|(?:[a-zA-Z_][a-zA-Z0-9_]*)(*MARK:T_IDENTIFIER)|(?:[\+\-\*\/])(*MARK:T_OPERATOR)|(?:[\(\)\{\}\[\]\,])(*MARK:T_PUNCTUATION))#A',
+                '#(?|(?:\s+)(*MARK:T_SPACE)|(?:\d+)(*MARK:T_NUMBER)|(?:"[^"]*")(*MARK:T_STRING)|(?:[a-zA-Z_][a-zA-Z0-9_]*)(*MARK:T_IDENTIFIER)|(?:[\+\-\*\/])(*MARK:T_OPERATOR)|(?:[\(\)\{\}\[\]\,])(*MARK:T_PUNCTUATION))#Au',
                 '1 + 2 * (3 + 4)',
                 [
                     Token::new('T_NUMBER', '1', 1, 1, []),
