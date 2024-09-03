@@ -42,7 +42,7 @@ final readonly class Grammar implements GrammarInterface
     public function compile(): string
     {
         return self::resolveReference(
-            sprintf('#(?|%s)#A', str_replace(
+            sprintf('#(?|%s)#Au', str_replace(
                 '#',
                 '\#',
                 implode('|', array_map(
