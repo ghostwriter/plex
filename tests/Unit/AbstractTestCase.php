@@ -154,6 +154,18 @@ abstract class AbstractTestCase extends \PHPUnit\Framework\TestCase
                     Token::new('T_PUNCTUATION', ')', 1, 15, []),
                 ],
             ],
+
+            'support hyphens in reference names' => [
+                [
+                    'second-one' => '(?&first-one)(?&hyphen)(?&first-one)',
+                    'hyphen' => '\-',
+                    'digit' => '\d',
+                    'first-one' => '(?&digit)+',
+                ],
+                '#(?|(?:(?:(?:\d)+)(?:\-)(?:(?:\d)+))(*MARK:second-one)|(?:\-)(*MARK:hyphen)|(?:\d)(*MARK:digit)|(?:(?:\d)+)(*MARK:first-one))#Au',
+                '123-456',
+                [Token::new('second-one', '123-456', 1, 7, [])],
+            ],
         ];
     }
 }
