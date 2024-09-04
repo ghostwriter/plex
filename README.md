@@ -72,13 +72,20 @@ use Ghostwriter\Plex\Lexer;
 
 
 $grammar = Grammar::new([
-    'T_ID' => '(?:(?&T_NUM)|(?&T_REF_STR))*',   // References both T_NUM and T_REF_STR (which references T_STR)
-    'T_NUM' => '\d+',                       // Matches numbers
-    'T_STR' => '\w+',                       // Matches word characters
-    'T_REF_STR' => '(?&T_STR)',             // References T_STR
+    // References both 'T_NUM' and 'ref-str' (which references T_STR)
+    'T_ID' => '(?:(?&T_NUM)|(?&ref-str))*',
+    
+    // Matches numbers
+    'T_NUM' => '\d+',
+    
+    // Matches word characters
+    'T_STR' => '\w+',
+    
+    // References T_STR
+    'ref-str' => '(?&T_STR)',
 ]);
 
-$lexer = \Ghostwriter\Plex\Lexer::new($grammar);
+$lexer = Lexer::new($grammar);
 
 $expected = [
     Token::new('T_ID', '456def', 1, 6, [])
