@@ -19,7 +19,7 @@ use function str_replace;
 
 final readonly class Grammar implements GrammarInterface
 {
-    public const string REFERENCE_REGULAR_EXPRESSION = '#\(\?&(\w+)\)#';
+    public const string REFERENCE_REGULAR_EXPRESSION = '#\(\?&([\w-]+)\)#';
 
     /**
      * eg. [
