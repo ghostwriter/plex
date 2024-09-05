@@ -11,28 +11,43 @@ use Throwable;
 
 use const JSON_THROW_ON_ERROR;
 
-use function json_encode;
-
 #[CoversClass(Token::class)]
 final class TokenTest extends AbstractTestCase
 {
     /**
      * @throws Throwable
      */
-    public function testConstruct(): void
+    public function testTokenInstanceOfTokenInterface(): void
+    {
+        $token = Token::new('type', 'value', 1, 1, ['matches']);
+
+        self::assertInstanceof(TokenInterface::class, $token);
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public function testTokenJsonSerialize(): void
+    {
+        $expectedToken = new Token('type', 'value', 1, 1, ['matches']);
+
+        $actualToken = Token::new('type', 'value', 1, 1, ['matches']);
+
+        self::assertSame(
+            \json_encode($expectedToken, JSON_THROW_ON_ERROR),
+            \json_encode($actualToken, JSON_THROW_ON_ERROR)
+        );
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public function testTokenToString(): void
     {
         $expectedToken = new Token('type', 'value', 1, 1, ['matches']);
 
         $actualToken = Token::new('type', 'value', 1, 1, ['matches']);
 
         self::assertSame((string) $expectedToken, (string) $actualToken);
-
-        self::assertSame(
-            json_encode($expectedToken, JSON_THROW_ON_ERROR),
-            json_encode($actualToken, JSON_THROW_ON_ERROR)
-        );
-
-        self::assertInstanceof(TokenInterface::class, $actualToken);
-        self::assertInstanceof(TokenInterface::class, $expectedToken);
     }
 }
