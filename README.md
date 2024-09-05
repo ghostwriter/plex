@@ -40,7 +40,7 @@ $grammar = Grammar::new([
     'T_DOT' => '\.'
 ]);
 
-$lexer = \Ghostwriter\Plex\Lexer::new($grammar);
+$lexer = Lexer::new($grammar);
 
 $expected = [
     Token::new('T_NUMBER', '1', 1, 1, []),
