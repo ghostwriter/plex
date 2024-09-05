@@ -7,8 +7,6 @@ namespace Ghostwriter\Plex;
 use Ghostwriter\Plex\Interface\TokenInterface;
 use Override;
 
-use function sprintf;
-
 final readonly class Token implements TokenInterface
 {
     public function __construct(
@@ -22,7 +20,7 @@ final readonly class Token implements TokenInterface
 
     public function __toString(): string
     {
-        return sprintf('Token(%s, %s, %d, %d)', $this->type, $this->value, $this->line, $this->column);
+        return \sprintf('Token(%s, %s, %d, %d)', $this->type, $this->value, $this->line, $this->column);
     }
 
     #[Override]
@@ -37,7 +35,7 @@ final readonly class Token implements TokenInterface
         ];
     }
 
-    public static function new(string $type, string $value, int $line, int $column, array $matches): self
+    public static function new(string $type, string $value, int $line, int $column, array $matches = []): self
     {
         return new self($type, $value, $line, $column, $matches);
     }
