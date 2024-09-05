@@ -12,11 +12,6 @@ use Ghostwriter\Plex\Interface\LexerInterface;
 use Ghostwriter\Plex\Interface\TokenInterface;
 use Override;
 
-use function mb_strlen;
-use function mb_substr_count;
-use function preg_match;
-use function sprintf;
-
 final readonly class Lexer implements LexerInterface
 {
     public function __construct(
@@ -36,9 +31,9 @@ final readonly class Lexer implements LexerInterface
         $regularExpression = $this->grammar->compile();
 
         while (isset($content[$column])) {
-            if (! preg_match($regularExpression, $content, $matches, 0, $column)) {
+            if (! \preg_match($regularExpression, $content, $matches, 0, $column)) {
                 throw new UnexpectedCharacterException(
-                    sprintf(
+                    \sprintf(
                         'Unexpected character "%s" on line %d and column %d',
                         $content[$column],
                         $line,
@@ -49,13 +44,14 @@ final readonly class Lexer implements LexerInterface
 
             /** @var array{'MARK':non-empty-string,0:non-empty-string} $matches */
             $lineNumber = $line;
+            $columnNumber = $column;
 
             $text = $matches[0] ?? throw new ShouldNotHappenException(
                 'The matches array should always have a 0 index',
             );
 
-            $line += mb_substr_count($text, "\n");
-            $column += mb_strlen($text);
+            $line += \mb_substr_count($text, "\n");
+            $column += \mb_strlen($text);
 
             $name = $matches['MARK'] ?? throw new ShouldNotHappenException(
                 'The matches array should always have a MARK index',
@@ -63,7 +59,7 @@ final readonly class Lexer implements LexerInterface
 
             unset($matches[0], $matches['MARK']);
 
-            yield Token::new($name, $text, $lineNumber, $column, $matches);
+            yield Token::new($name, $text, $lineNumber, $columnNumber, $matches);
         }
     }
 
