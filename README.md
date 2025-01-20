@@ -1,11 +1,9 @@
 # Plex
 
-[![Compliance](https://github.com/ghostwriter/plex/actions/workflows/compliance.yml/badge.svg)](https://github.com/ghostwriter/plex/actions/workflows/compliance.yml)
+[![Automation](https://github.com/ghostwriter/plex/actions/workflows/automation.yml/badge.svg)](https://github.com/ghostwriter/plex/actions/workflows/automation.yml)
 [![Supported PHP Version](https://badgen.net/packagist/php/ghostwriter/plex?color=8892bf)](https://www.php.net/supported-versions)
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/ghostwriter?label=Sponsor+@ghostwriter/plex&logo=GitHub+Sponsors)](https://github.com/sponsors/ghostwriter)
 [![Code Coverage](https://codecov.io/gh/ghostwriter/plex/branch/main/graph/badge.svg)](https://codecov.io/gh/ghostwriter/plex)
-[![Type Coverage](https://shepherd.dev/github/ghostwriter/plex/coverage.svg)](https://shepherd.dev/github/ghostwriter/plex)
-[![Psalm Level](https://shepherd.dev/github/ghostwriter/plex/level.svg)](https://psalm.dev/docs/running_psalm/error_levels)
 [![Latest Version on Packagist](https://badgen.net/packagist/v/ghostwriter/plex)](https://packagist.org/packages/ghostwriter/plex)
 [![Downloads](https://badgen.net/packagist/dt/ghostwriter/plex?color=blue)](https://packagist.org/packages/ghostwriter/plex)
 
